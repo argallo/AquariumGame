@@ -1,0 +1,161 @@
+package com.aqua.entities;
+
+import java.util.List;
+
+import com.aqua.animations.AnimatedActor;
+import com.aqua.entities.states.DefaultState;
+import com.aqua.entities.states.NormalState;
+import com.aqua.entities.states.State;
+import com.aqua.gamecomponents.GameView;
+
+/**
+ * 
+ * @author Gallo
+ *
+ *Entity Class. This class is an abstract class that 
+ *holds all common methods for our game objects. 
+ *This class will make it easy to check collisions,
+ *and finding the closest entities by using midpoints
+ *
+ *
+ */
+
+public abstract class Entity extends AnimatedActor{
+	
+	private String entityName;
+	private int entityId;
+	protected GameView gameView;
+	private State currentState;
+	
+	
+	/**
+	 * 
+	 * @param gameView takes in a game object
+	 * @param entityId the entity id being created by the singleton
+	 */
+	//might change constructor to allow singleton to create id inside entity class
+	public Entity(GameView gameView, int entityId) {
+		this.gameView = gameView;
+		this.entityId = entityId;
+		currentState = new DefaultState();
+		
+	}
+	
+	
+	/**
+	 * acts using the current states movement function
+	 */
+	@Override
+	public void act(float delta) {
+		currentState.movement(delta, this);
+		super.act(delta);
+	}
+	
+	/**
+	 * 
+	 * @return gets the state of this entity.
+	 * The state could be anything from normal, hungry, dead, opened, closed etc.
+	 */
+	public State getCurrentState() {
+		return currentState;
+	}
+	
+	/**
+	 * 
+	 * @param currentState sets the state of this entity
+	 */
+	public void setCurrentState(State currentState) {
+		this.currentState = currentState;
+	}
+	
+	/**
+	 * 
+	 * @param entityName entity name to be set
+	 */
+	protected void setEntityName(String entityName) {
+		this.entityName = entityName;
+	}
+	
+	/**
+	 * 
+	 * @return the name of the specific entity type
+	 */
+	public String getEntityName() {
+		return entityName;
+	}
+	
+	/**
+	 * 
+	 * @return unique id for each instance of an entity
+	 */
+	public int getEntityId() {
+		return entityId;
+	}
+	
+	/**
+	 * removes this entity
+	 */
+	public void removeThis(){
+		gameView.removeEntity(this);
+	}
+	
+	/**
+	 * 
+	 * @param collider other entity to check collision with
+	 * @return returns true if the two entities have collided
+	 */
+	public boolean collidesWith(Entity collider){
+		if(this.getX() < collider.getX()+collider.getWidth() || this.getX()+this.getWidth()> collider.getX()){
+			if(this.getY() < collider.getY()+collider.getHeight() || this.getY()+this.getHeight() > collider.getY()){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 
+	 * @param entities the list of entities to check for distances
+	 * @return returns the closest entity to this entity
+	 */
+	public Entity findClosestEntity(List<Entity> entities){
+		Entity closest = entities.get(0);
+		double currentDistance = distanceFormula(closest);
+		double distance;
+		for(int i = 1; i < entities.size(); i++){
+			distance = distanceFormula(entities.get(i));
+			if(distance < currentDistance){
+				currentDistance = distance;
+				closest = entities.get(i);
+			}
+		}
+		return closest;
+	}
+
+	/**
+	 * 
+	 * @param entity entity to check distance with
+	 * @return the distance away from entity
+	 */
+	private double distanceFormula(Entity entity){
+		return Math.sqrt((this.getCenterX()-entity.getCenterX())*(this.getCenterX()-entity.getCenterX()) 
+				+ (this.getCenterY()-entity.getCenterY())*(this.getCenterY()-entity.getCenterY()));
+	}
+	
+	/**
+	 * 
+	 * @return gets the center of the entities x position
+	 */
+	public float getCenterX(){
+		return (this.getWidth()/2)+this.getX();
+	}
+	
+	/**
+	 * 
+	 * @return gets the center of the entities y position
+	 */
+	public float getCenterY(){
+		return (this.getHeight()/2)+this.getY();
+	}
+
+}
