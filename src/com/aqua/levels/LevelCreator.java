@@ -7,9 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public abstract class LevelCreator {
 	
-	private Background background;
-	private UiContainer topInterface;
-	private GameView gameView;
+	protected Background background;
+	protected UiContainer topInterface;
+	protected GameView gameView;
 
 	
 	public abstract void createStage(Stage stage);
