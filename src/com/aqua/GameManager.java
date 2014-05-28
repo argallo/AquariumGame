@@ -6,6 +6,7 @@ import com.aqua.levels.LevelCreator;
 public class GameManager {
 	
 	private int currentScore = 0;
+	private int entityIdCounter = 0;
 	
 	private static final GameManager INSTANCE = new GameManager();
 	
@@ -21,6 +22,20 @@ public class GameManager {
 
 	public int getCurrentScore() {
 		return currentScore;
+	}
+ 
+	//may need to synchronize
+	public int newEntityId() {
+		
+		return ++entityIdCounter;
+	}
+	
+	public void resetEntityIdCounter(){
+		entityIdCounter = 0;
+	}
+	
+	public int getEntityIdCounter() {
+		return entityIdCounter;
 	}
 	
 

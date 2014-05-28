@@ -5,14 +5,16 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.aqua.entities.Entity;
+import com.aqua.entities.EntityFactory;
 import com.badlogic.gdx.scenes.scene2d.Group;
 
 public class GameView extends Group{
 	
 	HashMap<String, List<Entity>> entityList;
+	EntityFactory entityFactory;
 	
 	public GameView() {
-		
+		entityFactory = new EntityFactory();
 	}
 	
 	/**
@@ -20,7 +22,9 @@ public class GameView extends Group{
 	 * @param e will add entity to gameview group and entityList using EntityFactory
 	 */
 	public void addEntity(String e){
-		
+		Entity entity = entityFactory.createEntity(e, this);
+		entityList.get(e).add(entity);
+		this.addActor(entity);
 	}
 	
 	/**
