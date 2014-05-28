@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.aqua.containeritems.AbsButtonItem;
 import com.aqua.containeritems.BlankItem;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -21,8 +22,12 @@ public class UiContainer extends Group{
 	 */
 	public UiContainer(ArrayList<AbsButtonItem> newItems, GameView gameView) {
 		this.gameView = gameView;
+		//set the size and position of the UIContainer
+		setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()/6);
+		setPosition(0, Gdx.graphics.getHeight()-getY());
 		//REPLACE WITH ACTUAL BACKGROUND!
 		background = new TextureRegion();
+		//init all items and add to group
 		initItems(newItems);
 	}
 	
@@ -56,7 +61,7 @@ public class UiContainer extends Group{
 	}
 	
 	/**
-	 * override draw to add a background to group actor
+	 * override draw to add a background to group actor might need to change xy all that will see
 	 */
 	@Override
 	public void draw(Batch batch, float parentAlpha) {

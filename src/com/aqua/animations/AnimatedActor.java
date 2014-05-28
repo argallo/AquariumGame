@@ -9,6 +9,7 @@ public abstract class AnimatedActor extends Actor{
 
 	private AnimationBehavior animationBehavior;
 	private float stateTime = 0;
+	private int direction = 0;
 	
 	public AnimatedActor() {
 		this.animationBehavior = new DefaultAnimationBehavior();
@@ -31,7 +32,11 @@ public abstract class AnimatedActor extends Actor{
 	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		animationBehavior.Animate(batch, getX(), getY(), getWidth(), getHeight(), stateTime);
+		animationBehavior.Animate(batch, getX(), getY(), getWidth(), getHeight(), stateTime, direction);
+	}
+	
+	public void setDirection(int direction) {
+		this.direction = direction;
 	}
 	
 }

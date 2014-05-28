@@ -2,9 +2,15 @@ package com.aqua.entities.states;
 
 import com.aqua.entities.Entity;
 
-public interface State {
+public abstract class State {
 	
-	public void movement(float delta, Entity entity);
+	protected Entity entity;
+	
+	public State(Entity entity) {
+		this.entity = entity;
+	}
+	
+	public abstract void movement(float delta);
 	
 
 }

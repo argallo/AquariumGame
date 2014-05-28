@@ -37,7 +37,8 @@ public abstract class Entity extends AnimatedActor{
 	public Entity(GameView gameView, int entityId) {
 		this.gameView = gameView;
 		this.entityId = entityId;
-		currentState = new DefaultState();
+		setEntityName(createName());
+		setCurrentState(initState());
 		
 	}
 	
@@ -47,9 +48,11 @@ public abstract class Entity extends AnimatedActor{
 	 */
 	@Override
 	public void act(float delta) {
-		currentState.movement(delta, this);
+		currentState.movement(delta);
 		super.act(delta);
 	}
+	
+	protected abstract State initState();
 	
 	/**
 	 * 
@@ -67,6 +70,8 @@ public abstract class Entity extends AnimatedActor{
 	public void setCurrentState(State currentState) {
 		this.currentState = currentState;
 	}
+	
+	protected abstract String createName();
 	
 	/**
 	 * 
@@ -156,6 +161,28 @@ public abstract class Entity extends AnimatedActor{
 	 */
 	public float getCenterY(){
 		return (this.getHeight()/2)+this.getY();
+	}
+
+	/**
+	 * makes sure no entity goes out of the gameView region
+	 * (maybe switch direction)
+	 */
+	public void checkWalls() {
+		//Horizontal walls
+		if(getX()< 0){
+			setX(0);
+		}
+		else if(getX()+getWidth() > gameView.getWidth()){
+			setX(gameView.getWidth()-getWidth());
+		}
+		//Vertical Walls
+		if(getY() < 0){
+			setY(0);
+		}
+		else if(getY()+getHeight() > gameView.getHeight()){
+			setY(gameView.getHeight()-getHeight());
+		}
+		
 	}
 
 }
