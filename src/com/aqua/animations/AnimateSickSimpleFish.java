@@ -4,15 +4,14 @@ import com.aqua.Assets;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class AnimateSimpleFish implements AnimationBehavior{
-	
+public class AnimateSickSimpleFish implements AnimationBehavior {
+
 	Animation left;
 	ArrayFlip flipped;
 	Animation right;
-	
-	public AnimateSimpleFish() {
+	//change to sick images or dont create this just add a boolean on interface 
+	public AnimateSickSimpleFish() {
 		left = new Animation(0.03f, (Assets.getInstance().get("PlayerFish/simplefish.atlas", TextureAtlas.class).findRegions("simplefish")));
 		flipped = new ArrayFlip(Assets.getInstance().get("PlayerFish/simplefish.atlas", TextureAtlas.class).findRegions("simplefish"));
 		right = new Animation(0.03f, flipped.getFlipped());
@@ -32,10 +31,5 @@ public class AnimateSimpleFish implements AnimationBehavior{
 		}
 		
 	}
-
-	
-	
-	
-	
 
 }

@@ -14,7 +14,7 @@ public class BaseScreen implements Screen{
 	private SpriteBatch batch;
 	
 	public BaseScreen(SpriteBatch batch) {
-		this.batch = batch;
+		//this.batch = batch;
 		activeStage = new Stage(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false, batch);
 		transitionStage = new Stage(Gdx.graphics.getWidth(),Gdx.graphics.getHeight(), false , batch);
 	}

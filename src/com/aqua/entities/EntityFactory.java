@@ -1,7 +1,7 @@
 package com.aqua.entities;
 
 import com.aqua.GameManager;
-import com.aqua.entities.fish.SimpleFish;
+import com.aqua.entities.simplefish.SimpleFish;
 import com.aqua.gamecomponents.GameView;
 
 /**

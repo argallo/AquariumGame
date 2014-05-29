@@ -12,6 +12,6 @@ public abstract class LevelCreator {
 	protected GameView gameView;
 
 	
-	public abstract void createStage(Stage stage);
+	public abstract Stage createStage(Stage stage);
 
 }

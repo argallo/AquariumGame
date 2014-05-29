@@ -2,10 +2,12 @@ package com.aqua.gamecomponents;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.aqua.entities.Entity;
 import com.aqua.entities.EntityFactory;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Group;
 
 public class GameView extends Group{
@@ -15,6 +17,9 @@ public class GameView extends Group{
 	
 	public GameView() {
 		entityFactory = new EntityFactory();
+		entityList = new HashMap<String, List<Entity>>();
+		setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		setPosition(0, 0);
 	}
 	
 	/**
@@ -23,6 +28,9 @@ public class GameView extends Group{
 	 */
 	public void addEntity(String e){
 		Entity entity = entityFactory.createEntity(e, this);
+		if(entityList.get(e) == null){
+			entityList.put(e, new LinkedList<Entity>());	
+		}
 		entityList.get(e).add(entity);
 		this.addActor(entity);
 	}
@@ -32,7 +40,7 @@ public class GameView extends Group{
 	 * @param e removes entity e from correct group in entityList and from gameview group
 	 */
 	public void removeEntity(Entity e){
-		Iterator<Entity> list = entityList.get(e.getName()).iterator();
+		Iterator<Entity> list = entityList.get(e.getEntityName()).iterator();
 		Entity ent;
 		while (list.hasNext()) {
 			   ent = list.next();

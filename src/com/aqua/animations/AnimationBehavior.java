@@ -7,5 +7,6 @@ public interface AnimationBehavior {
 	
 	public void Animate(Batch batch, float x, float y, float width, float height, float stateTime, int direction);
 	
-
+	
+	
 }

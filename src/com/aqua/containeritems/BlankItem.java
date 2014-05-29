@@ -1,15 +1,20 @@
 package com.aqua.containeritems;
 
+import com.aqua.Assets;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
 public class BlankItem extends AbsButtonItem{
 
 	
 	public BlankItem() {
-		// TODO Auto-generated constructor stub
+		setButtonStyle(new TextureRegionDrawable(new TextureRegion(Assets.getInstance().get("UIItems/simplefish_item.png",Texture.class))), new TextureRegionDrawable(new TextureRegion(Assets.getInstance().get("UIItems/simplefish_item.png",Texture.class))));
 	}
 	
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
+		System.out.println("wow");
 		
 	}
 

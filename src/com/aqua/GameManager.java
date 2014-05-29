@@ -5,8 +5,10 @@ import com.aqua.levels.LevelCreator;
 
 public class GameManager {
 	
-	private int currentScore = 0;
+	
+	private int currentScore = 100000;
 	private int entityIdCounter = 0;
+	
 	
 	private static final GameManager INSTANCE = new GameManager();
 	
@@ -23,8 +25,12 @@ public class GameManager {
 	public int getCurrentScore() {
 		return currentScore;
 	}
+	
+	public void setCurrentScore(int currentScore) {
+		this.currentScore = currentScore;
+	}
  
-	//may need to synchronize
+	//may need to synchronize probably not
 	public int newEntityId() {
 		
 		return ++entityIdCounter;

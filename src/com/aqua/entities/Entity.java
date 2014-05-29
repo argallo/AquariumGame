@@ -2,6 +2,7 @@ package com.aqua.entities;
 
 import java.util.List;
 
+import com.aqua.Direction;
 import com.aqua.animations.AnimatedActor;
 import com.aqua.entities.states.DefaultState;
 import com.aqua.entities.states.NormalState;
@@ -167,22 +168,29 @@ public abstract class Entity extends AnimatedActor{
 	 * makes sure no entity goes out of the gameView region
 	 * (maybe switch direction)
 	 */
-	public void checkWalls() {
+	public void checkHorizontalWalls() {
 		//Horizontal walls
 		if(getX()< 0){
 			setX(0);
+			setDirectionHorizontal(Direction.RIGHT);
 		}
 		else if(getX()+getWidth() > gameView.getWidth()){
 			setX(gameView.getWidth()-getWidth());
+			setDirectionHorizontal(Direction.LEFT);
 		}
+		
+	}
+	
+	public void checkVerticleWalls(){
 		//Vertical Walls
 		if(getY() < 0){
 			setY(0);
+			setDirectionVerticle(Direction.UP);
 		}
 		else if(getY()+getHeight() > gameView.getHeight()){
 			setY(gameView.getHeight()-getHeight());
+			setDirectionVerticle(Direction.DOWN);
 		}
-		
 	}
 
 }

@@ -2,16 +2,21 @@ package com.aqua.gamecomponents;
 
 import java.util.ArrayList;
 
+import com.aqua.Assets;
 import com.aqua.containeritems.AbsButtonItem;
 import com.aqua.containeritems.BlankItem;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class UiContainer extends Group{
 	
-	private static final int MAX_SLOTS = 8;
+	private static final int MAX_SLOTS = 6;
 	ArrayList<AbsButtonItem> uiItems= new ArrayList<AbsButtonItem>();
 	private GameView gameView;
 	private final TextureRegion background; 
@@ -24,9 +29,9 @@ public class UiContainer extends Group{
 		this.gameView = gameView;
 		//set the size and position of the UIContainer
 		setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()/6);
-		setPosition(0, Gdx.graphics.getHeight()-getY());
+		setPosition(0, Gdx.graphics.getHeight()-getHeight());
 		//REPLACE WITH ACTUAL BACKGROUND!
-		background = new TextureRegion();
+		background = new TextureRegion(Assets.getInstance().get("Container/container.png", Texture.class));
 		//init all items and add to group
 		initItems(newItems);
 	}
@@ -56,6 +61,7 @@ public class UiContainer extends Group{
 		}
 		for(int i = 0; i < uiItems.size(); i++){
 			uiItems.get(i).setGameView(gameView);
+			uiItems.get(i).setPosition(i*(Gdx.graphics.getWidth()/MAX_SLOTS)+Gdx.graphics.getWidth()/30, this.getHeight()/4);
 			this.addActor(uiItems.get(i));
 		}
 	}
@@ -68,5 +74,8 @@ public class UiContainer extends Group{
 		batch.draw(background, this.getX(), this.getY(),this.getWidth(), this.getHeight());
 		super.draw(batch, parentAlpha);
 	}
+	
+	
+
 
 }

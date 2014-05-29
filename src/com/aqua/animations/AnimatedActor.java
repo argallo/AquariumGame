@@ -9,7 +9,8 @@ public abstract class AnimatedActor extends Actor{
 
 	private AnimationBehavior animationBehavior;
 	private float stateTime = 0;
-	private int direction = 0;
+	private int directionVerticle = 0;
+	private int directionHorizontal = 0;
 	
 	public AnimatedActor() {
 		this.animationBehavior = new DefaultAnimationBehavior();
@@ -32,11 +33,23 @@ public abstract class AnimatedActor extends Actor{
 	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		animationBehavior.Animate(batch, getX(), getY(), getWidth(), getHeight(), stateTime, direction);
+		animationBehavior.Animate(batch, getX(), getY(), getWidth(), getHeight(), stateTime, directionHorizontal);
+		super.draw(batch, parentAlpha);
 	}
 	
-	public void setDirection(int direction) {
-		this.direction = direction;
+	public void setDirectionHorizontal(int directionHorizontal) {
+		this.directionHorizontal = directionHorizontal;
 	}
 	
+	public void setDirectionVerticle(int directionVerticle) {
+		this.directionVerticle = directionVerticle;
+	}
+	
+	public int getDirectionHorizontal() {
+		return directionHorizontal;
+	}
+	
+	public int getDirectionVerticle() {
+		return directionVerticle;
+	}
 }
