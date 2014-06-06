@@ -52,4 +52,8 @@ public abstract class AnimatedActor extends Actor{
 	public int getDirectionVerticle() {
 		return directionVerticle;
 	}
+	
+	public AnimationBehavior getAnimationBehavior() {
+		return animationBehavior;
+	}
 }

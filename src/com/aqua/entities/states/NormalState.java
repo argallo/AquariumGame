@@ -6,46 +6,51 @@ import com.badlogic.gdx.math.MathUtils;
 
 public class NormalState extends State{
 
-
-	private int verticleDirection = 2;
-	private int horizontalDirection = 2;
+	
+	public static final int SPEED = 100;
+	private final int randomOdds = 97;
 	private int hunger = 0;
 
 
 	public NormalState(Entity entity) {
 		super(entity);
+		generateRandomMovement();
 		
 	}
 	
 	//swap entity to constructor
 	@Override
 	public void movement(float delta) {
+		if(!entity.getAnimationBehavior().isTransition()){
+			updateHunger();
+			if(MathUtils.random(100)>randomOdds){
+				generateRandomMovement();
+			}
+			updateY(delta);
+			updateX(delta);
+			entity.checkHorizontalWalls();
+			entity.checkVerticleWalls();
+			verticleDirection = entity.getDirectionVerticle();
+			horizontalDirection = entity.getDirectionHorizontal();
+		}
+	}
+
+	private void updateHunger() {
 		hunger++;
 		//might need to delta this
 		if(hunger == 800){
 			entity.setCurrentState(new HungryState(entity));
 		}
-		if(MathUtils.random(100)>97){
-			verticleDirection = MathUtils.random(2);
-			horizontalDirection = MathUtils.random(1)+3;
-		}
-		updateY(delta);
-		updateX(delta);
-		entity.checkHorizontalWalls();
-		entity.checkVerticleWalls();
-		verticleDirection = entity.getDirectionVerticle();
-		horizontalDirection = entity.getDirectionHorizontal();
 	}
 
 	private void updateX(float delta) {
-		
 		switch(horizontalDirection){
 		case Direction.LEFT:
-			entity.setX(entity.getX()-(delta*Direction.SPEED));
+			entity.setX(entity.getX()-(delta*SPEED));
 			entity.setDirectionHorizontal(Direction.LEFT);
 			break;
 		case Direction.RIGHT:
-			entity.setX(entity.getX()+(delta*Direction.SPEED));
+			entity.setX(entity.getX()+(delta*SPEED));
 			entity.setDirectionHorizontal(Direction.RIGHT);
 			break;
 		}
@@ -54,11 +59,11 @@ public class NormalState extends State{
 	private void updateY(float delta) {
 		switch(verticleDirection){
 		case Direction.UP:
-			entity.setY(entity.getY()+(delta*Direction.SPEED));
+			entity.setY(entity.getY()+(delta*SPEED));
 			entity.setDirectionVerticle(Direction.UP);
 			break;
 		case Direction.DOWN:
-			entity.setY(entity.getY()-(delta*Direction.SPEED));
+			entity.setY(entity.getY()-(delta*SPEED));
 			entity.setDirectionVerticle(Direction.DOWN);
 			break;
 		case Direction.MIDDLE:
@@ -66,6 +71,7 @@ public class NormalState extends State{
 			break;
 		}
 	}
+	
 	
 	
 

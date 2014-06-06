@@ -7,6 +7,5 @@ public class Direction {
 	public static final int MIDDLE = 2;
 	public static final int LEFT = 3;
 	public static final int RIGHT = 4;
-	public static final int SPEED = 100;
 
 }

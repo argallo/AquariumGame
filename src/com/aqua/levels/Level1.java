@@ -32,8 +32,9 @@ public class Level1 extends LevelCreator{
 		topInterface = new UiContainer(items, gameView);
 		background = new Background();
 		stage.addActor(background);
-		stage.addActor(topInterface);
 		stage.addActor(gameView);
+		stage.addActor(topInterface);
+		
 		background.setSize(background.getWidth(), Gdx.graphics.getHeight()-topInterface.getHeight());
 		gameView.setSize(gameView.getWidth(), Gdx.graphics.getHeight() - topInterface.getHeight());
 		return stage;

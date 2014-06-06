@@ -13,4 +13,11 @@ public class BackgroundAnimationBehavior implements AnimationBehavior {
 		
 	}
 
+	@Override
+	public boolean isTransition() {
+		return false;
+	}
+
+
+
 }

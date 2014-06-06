@@ -99,6 +99,14 @@ public abstract class Entity extends AnimatedActor{
 	}
 	
 	/**
+	 * 
+	 * @return returns the current gameview
+	 */
+	public GameView getGameView() {
+		return gameView;
+	}
+	
+	/**
 	 * removes this entity
 	 */
 	public void removeThis(){

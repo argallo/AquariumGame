@@ -11,4 +11,11 @@ public class DefaultAnimationBehavior implements AnimationBehavior {
 
 	}
 
+	@Override
+	public boolean isTransition() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 }
