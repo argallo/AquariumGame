@@ -2,6 +2,7 @@ package com.aqua.entities.simplefish;
 
 import com.aqua.animations.AnimateSimpleFish;
 import com.aqua.entities.PlayerFish;
+import com.aqua.entities.states.HungryState;
 import com.aqua.entities.states.NormalState;
 import com.aqua.entities.states.State;
 import com.aqua.gamecomponents.GameView;
@@ -27,7 +28,7 @@ public class SimpleFish extends PlayerFish{
 
 	@Override
 	protected State initState() {
-		return new NormalState(this);
+		return new HungryState(this);
 	}
 	
 	

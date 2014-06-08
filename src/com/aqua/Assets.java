@@ -26,6 +26,10 @@ public class Assets extends AssetManager{
 		load("Background/background.png", Texture.class, param);
 		load("Container/container.png", Texture.class, param);
 		load("UIItems/simplefish_item.png", Texture.class, param);
+		load("Bait/fishfood_green.png", Texture.class, param);
+		load("Bait/fishfood_red.png", Texture.class, param);
+		load("Bait/fishfood_blue.png", Texture.class, param);
+		load("Bait/fishfood_yellow.png", Texture.class, param);
 		load("PlayerFish/simplefish.atlas", TextureAtlas.class);
 		load("PlayerFish/simplefishflip.atlas", TextureAtlas.class);
 		load("PlayerFish/simplefishsick.atlas", TextureAtlas.class);

@@ -1,36 +1,80 @@
 package com.aqua.entities.states;
 
+import java.util.List;
+
 import com.aqua.Direction;
 import com.aqua.animations.AnimateSickSimpleFish;
 import com.aqua.animations.AnimateDeadSimpleFish;
+import com.aqua.animations.AnimateSimpleFish;
 import com.aqua.entities.Entity;
 import com.badlogic.gdx.math.MathUtils;
 
 public class HungryState extends State{
 
-	public static final int SPEED = 200;
+	public static final int SPEED = 150;
 	private final int randomOdds = 97;
 	private int hunger = 0;
+	private List<Entity> foodList;
+	private Entity closestFood;
 	
 	public HungryState(Entity entity) {
 		super(entity);
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+	//clean up this code and document it maybe try to figure out what can be put into the state abs class such as update x and y.
+	
 	@Override
 	public void movement(float delta) {
 		if(!entity.getAnimationBehavior().isTransition()){
-		updateHunger();
-		if(MathUtils.random(100)>randomOdds){
-			generateRandomMovement();
+			updateHunger();
+			if(!checkFood(delta)){
+				if(MathUtils.random(100)>randomOdds){
+					generateRandomMovement();
+				}
+				updateY(delta);
+				updateX(delta);
+			}
 		}
-		updateY(delta);
-		updateX(delta);
-		entity.checkHorizontalWalls();
-		entity.checkVerticleWalls();
-		verticleDirection = entity.getDirectionVerticle();
-		horizontalDirection = entity.getDirectionHorizontal();
+		else{
+			checkFood(delta);	
 		}
+	}
+
+	private boolean checkFood(float delta) {
+		foodList = entity.getGameView().getFoodList("starterbait");
+		if(foodList == null || foodList.isEmpty()){
+			return false;
+		}
+		closestFood = entity.findClosestEntity(foodList);
+		if(entity.collidesWith(closestFood)){
+			closestFood.removeThis();
+			entity.setCurrentState(new NormalState(entity));
+			entity.setAnimationBehavior(new AnimateSimpleFish());
+		}
+		else{
+			if(!entity.getAnimationBehavior().isTransition()){
+				if(entity.getX() < closestFood.getX()){
+					entity.setX(entity.getX()+(delta*SPEED));
+					entity.setDirectionHorizontal(Direction.RIGHT);
+				}
+				else if(entity.getX() > closestFood.getX()){
+					entity.setX(entity.getX()-(delta*SPEED));
+					entity.setDirectionHorizontal(Direction.LEFT);
+				}
+			}
+			if(entity.getY() < closestFood.getY()-closestFood.getHeight()){
+				entity.setY(entity.getY()+(delta*SPEED));
+				entity.setDirectionVerticle(Direction.UP);
+			}
+			else if(entity.getY() > closestFood.getY()){
+				entity.setY(entity.getY()-(delta*SPEED));
+				entity.setDirectionVerticle(Direction.DOWN);
+			}
+		}
+		return true;
 	}
 
 	private void updateHunger() {
@@ -56,6 +100,8 @@ public class HungryState extends State{
 			entity.setDirectionHorizontal(Direction.RIGHT);
 			break;
 		}
+		entity.checkHorizontalWalls();
+		horizontalDirection = entity.getDirectionHorizontal();
 	}
 
 	private void updateY(float delta) {
@@ -72,6 +118,8 @@ public class HungryState extends State{
 			entity.setDirectionVerticle(Direction.MIDDLE);
 			break;
 		}
+		entity.checkVerticleWalls();
+		verticleDirection = entity.getDirectionVerticle();
 	}
 	
 

@@ -5,10 +5,13 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.aqua.GameManager;
 import com.aqua.entities.Entity;
 import com.aqua.entities.EntityFactory;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class GameView extends Group{
 	
@@ -20,8 +23,28 @@ public class GameView extends Group{
 		entityList = new HashMap<String, List<Entity>>();
 		setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		setPosition(0, 0);
+		this.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				if(GameManager.getInstance().getCurrentScore() > 100)
+					addEntity("starterbait", x, y);
+				//subtract from current score
+			}
+		});
 	}
 	
+	/**
+	 * 
+	 * @param e will add entity to gameview group and entityList using EntityFactory at a specific position
+	 */
+	public void addEntity(String e, float x, float y){
+		Entity entity = entityFactory.createEntity(e, this, x, y);
+		if(entityList.get(e) == null){
+			entityList.put(e, new LinkedList<Entity>());	
+		}
+		entityList.get(e).add(entity);
+		this.addActor(entity);
+	}
 	/**
 	 * 
 	 * @param e will add entity to gameview group and entityList using EntityFactory
@@ -59,6 +82,9 @@ public class GameView extends Group{
 	 * @return the list of that food present in the entityList
 	 */
 	public List<Entity> getFoodList(String foodName){
+		if(entityList.get(foodName) == null){
+			return null;
+		}
 		return entityList.get(foodName);
 	}
 	
