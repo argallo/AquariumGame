@@ -9,7 +9,7 @@ import com.aqua.animations.AnimateSimpleFish;
 import com.aqua.entities.Entity;
 import com.badlogic.gdx.math.MathUtils;
 
-public class HungryState extends State{
+public class HungryFishState extends AbsFishState{
 
 	public static final int SPEED = 150;
 	private final int randomOdds = 97;
@@ -17,18 +17,16 @@ public class HungryState extends State{
 	private List<Entity> foodList;
 	private Entity closestFood;
 	
-	public HungryState(Entity entity) {
-		super(entity);
-		// TODO Auto-generated constructor stub
+	public HungryFishState(Entity entity) {
+		super(entity, SPEED);
 	}
 
-	
-	
+
 	//clean up this code and document it maybe try to figure out what can be put into the state abs class such as update x and y.
 	
 	@Override
 	public void movement(float delta) {
-		if(!entity.getAnimationBehavior().isTransition()){
+		if(!entity.isTurning()){
 			updateHunger();
 			if(!checkFood(delta)){
 				if(MathUtils.random(100)>randomOdds){
@@ -51,11 +49,12 @@ public class HungryState extends State{
 		closestFood = entity.findClosestEntity(foodList);
 		if(entity.collidesWith(closestFood)){
 			closestFood.removeThis();
-			entity.setCurrentState(new NormalState(entity));
-			entity.setAnimationBehavior(new AnimateSimpleFish());
+			entity.setCurrentState(new NormalFishState(entity));
+			entity.setAnimationBehavior(new AnimateSimpleFish(entity.getDirectionHorizontal()));
+			entity.eat();
 		}
 		else{
-			if(!entity.getAnimationBehavior().isTransition()){
+			if(!entity.isTurning()){
 				if(entity.getX() < closestFood.getX()){
 					entity.setX(entity.getX()+(delta*SPEED));
 					entity.setDirectionHorizontal(Direction.RIGHT);
@@ -80,49 +79,14 @@ public class HungryState extends State{
 	private void updateHunger() {
 		hunger++;
 		if(hunger == 300){
-			entity.setAnimationBehavior(new AnimateSickSimpleFish());
+			entity.setAnimationBehavior(new AnimateSickSimpleFish(entity.getDirectionHorizontal()));
 		}
 		if(hunger == 600){
-			entity.setAnimationBehavior(new AnimateDeadSimpleFish());
-			entity.setCurrentState(new DeadState(entity));
+			entity.setAnimationBehavior(new AnimateDeadSimpleFish(entity.getDirectionHorizontal()));
+			entity.setCurrentState(new DeadFishState(entity));
 		}
 		
 	}
-
-	private void updateX(float delta) {
-		switch(horizontalDirection){
-		case Direction.LEFT:
-			entity.setX(entity.getX()-(delta*SPEED));
-			entity.setDirectionHorizontal(Direction.LEFT);
-			break;
-		case Direction.RIGHT:
-			entity.setX(entity.getX()+(delta*SPEED));
-			entity.setDirectionHorizontal(Direction.RIGHT);
-			break;
-		}
-		entity.checkHorizontalWalls();
-		horizontalDirection = entity.getDirectionHorizontal();
-	}
-
-	private void updateY(float delta) {
-		switch(verticleDirection){
-		case Direction.UP:
-			entity.setY(entity.getY()+(delta*SPEED));
-			entity.setDirectionVerticle(Direction.UP);
-			break;
-		case Direction.DOWN:
-			entity.setY(entity.getY()-(delta*SPEED));
-			entity.setDirectionVerticle(Direction.DOWN);
-			break;
-		case Direction.MIDDLE:
-			entity.setDirectionVerticle(Direction.MIDDLE);
-			break;
-		}
-		entity.checkVerticleWalls();
-		verticleDirection = entity.getDirectionVerticle();
-	}
 	
-
-
 
 }

@@ -6,16 +6,11 @@ public class DefaultAnimationBehavior implements AnimationBehavior {
 
 	@Override
 	public void Animate(Batch batch, float x, float y, float width,
-			float height, float stateTime, int direction) {
+			float height, float stateTime) {
 		//do nothing default
 
 	}
 
-	@Override
-	public boolean isTransition() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 }

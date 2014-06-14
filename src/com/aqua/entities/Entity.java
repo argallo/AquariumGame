@@ -5,7 +5,7 @@ import java.util.List;
 import com.aqua.Direction;
 import com.aqua.animations.AnimatedActor;
 import com.aqua.entities.states.DefaultState;
-import com.aqua.entities.states.NormalState;
+import com.aqua.entities.states.NormalFishState;
 import com.aqua.entities.states.State;
 import com.aqua.gamecomponents.GameView;
 

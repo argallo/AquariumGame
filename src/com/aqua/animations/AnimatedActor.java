@@ -33,7 +33,7 @@ public abstract class AnimatedActor extends Actor{
 	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		animationBehavior.Animate(batch, getX(), getY(), getWidth(), getHeight(), stateTime, directionHorizontal);
+		animationBehavior.Animate(batch, getX(), getY(), getWidth(), getHeight(), stateTime);
 		super.draw(batch, parentAlpha);
 	}
 	

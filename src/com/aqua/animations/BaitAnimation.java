@@ -33,15 +33,11 @@ public class BaitAnimation implements AnimationBehavior {
 	
 	@Override
 	public void Animate(Batch batch, float x, float y, float width,
-			float height, float stateTime, int direction) {
+			float height, float stateTime) {
 		//batch.draw(selectedColor, x, y, width, height);
 		batch.draw(selectedColor, x, y, width/2, height/2, width, height, 1, 1, rotation);
 
 	}
 
-	@Override
-	public boolean isTransition() {
-		return false;
-	}
 
 }

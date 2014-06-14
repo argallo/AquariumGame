@@ -9,13 +9,8 @@ public class BackgroundAnimationBehavior implements AnimationBehavior {
 	
 	@Override
 	public void Animate(Batch batch, float x, float y, float width,
-			float height, float stateTime, int direction) {
+			float height, float stateTime) {
 		
-	}
-
-	@Override
-	public boolean isTransition() {
-		return false;
 	}
 
 

@@ -6,10 +6,11 @@ import com.aqua.entities.Entity;
 public class BaitState extends State {
 	
 	public static final int SPEED = 80;
+	Entity entity;
 
 	public BaitState(Entity entity) {
-		super(entity);
-		
+		super();
+		this.entity = entity;
 	}
 
 	@Override
@@ -28,5 +29,13 @@ public class BaitState extends State {
 		entity.setY(entity.getY()-(delta*SPEED));
 		entity.setDirectionVerticle(Direction.DOWN);
 	}
+
+	@Override
+	public void setEntity(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }

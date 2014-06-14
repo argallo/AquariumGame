@@ -33,6 +33,7 @@ public class Assets extends AssetManager{
 		load("PlayerFish/simplefish.atlas", TextureAtlas.class);
 		load("PlayerFish/simplefishflip.atlas", TextureAtlas.class);
 		load("PlayerFish/simplefishsick.atlas", TextureAtlas.class);
+		load("PlayerFish/simplefishbite.atlas", TextureAtlas.class);
 		finishLoading();
 	}
 

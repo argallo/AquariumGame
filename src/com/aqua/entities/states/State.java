@@ -5,13 +5,11 @@ import com.badlogic.gdx.math.MathUtils;
 
 public abstract class State {
 	
-	protected Entity entity;
 	protected int verticleDirection;
 	protected int horizontalDirection;
 	
-	public State(Entity entity) {
-		this.entity = entity;
-	}
+	
+	protected abstract void setEntity(Entity entity);
 	
 	public abstract void movement(float delta);
 	

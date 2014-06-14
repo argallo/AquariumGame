@@ -4,12 +4,12 @@ import com.aqua.Direction;
 import com.aqua.entities.Entity;
 import com.badlogic.gdx.math.MathUtils;
 
-public class DeadState extends State{
+public class DeadFishState extends AbsFishState{
 	
 	public static final int SPEED = 150;
 
-	public DeadState(Entity entity) {
-		super(entity);
+	public DeadFishState(Entity entity) {
+		super(entity, SPEED);
 		entity.setDirectionVerticle(Direction.UP);	
 	}
 
@@ -35,7 +35,8 @@ public class DeadState extends State{
 	 * updates Y direction to float fish off the screen
 	 * @param delta update variable
 	 */
-	private void updateY(float delta) {
+	@Override
+	protected void updateY(float delta) {
 			entity.setY(entity.getY()+(delta*SPEED));
 			entity.setDirectionVerticle(Direction.UP);
 	}
