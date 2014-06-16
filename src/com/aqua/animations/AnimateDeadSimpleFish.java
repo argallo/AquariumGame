@@ -9,11 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class AnimateDeadSimpleFish extends AbsFishAnimationBehavior{
 	
-	Animation left;
-	ArrayFlip flipped;
-	Animation right;
-
-
+	
 	public AnimateDeadSimpleFish(Entity entity ,int currentDirection) {
 		super(entity, currentDirection);
 		left = new Animation(0.02f, (Assets.getInstance().get("PlayerFish/simplefishsick.atlas", TextureAtlas.class).findRegions("simple_fish_dead")));
@@ -23,6 +19,10 @@ public class AnimateDeadSimpleFish extends AbsFishAnimationBehavior{
 		right.setPlayMode(Animation.LOOP);
 	}
 	
+	
+	/**
+	 * Override animate so that only floats up without any moving
+	 */
 	@Override
 	public void Animate(Batch batch, float x, float y, float width, float height, float stateTime) {
 			if(currentDirection == Direction.RIGHT){
@@ -31,6 +31,36 @@ public class AnimateDeadSimpleFish extends AbsFishAnimationBehavior{
 			else{
 				batch.draw(left.getKeyFrame(stateTime), x, y, width, height);
 			}		
+	}
+	
+	/**
+	 * no biting
+	 */
+	@Override
+	public boolean isBiting() {
+		return false;
+	}
+	
+	/**
+	 * no turning
+	 */
+	@Override
+	public boolean isTurning() {
+		return false;
+	}
+	
+	/**
+	 * cant bite when dead
+	 */
+	@Override
+	public void bite() {
+	}
+	
+	/**
+	 * cant turn when dead
+	 */
+	@Override
+	public void turn(int directionHorizontal) {
 	}
 
 }

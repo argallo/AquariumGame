@@ -16,14 +16,11 @@ public class HungryFishState extends AbsFishState{
 	private int hunger = 0;
 	private List<Entity> foodList;
 	private Entity closestFood;
-	
+
 	public HungryFishState(Entity entity) {
 		super(entity, SPEED);
 	}
-
-
 	//clean up this code and document it maybe try to figure out what can be put into the state abs class such as update x and y.
-	
 	@Override
 	public void movement(float delta) {
 		if(!entity.isTurning()){
@@ -83,8 +80,5 @@ public class HungryFishState extends AbsFishState{
 			entity.setAnimationBehavior(new AnimateDeadSimpleFish(entity, entity.getDirectionHorizontal()));
 			entity.setCurrentState(new DeadFishState(entity));
 		}
-		
 	}
-	
-
 }
