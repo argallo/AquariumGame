@@ -2,6 +2,8 @@ package com.aqua.animations;
 
 import com.aqua.Assets;
 import com.aqua.Direction;
+import com.aqua.entities.Entity;
+import com.aqua.entities.states.NormalFishState;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -17,12 +19,12 @@ public class AnimateSimpleFish extends AbsFishAnimationBehavior{
 	boolean turning = false;
 	boolean biting = false;
 	
-	public AnimateSimpleFish(int currentDirection) {
-		super(currentDirection);
+	public AnimateSimpleFish(Entity entity, int currentDirection) {
+		super(entity, currentDirection);
 		//biting animation
-		biteRight = new Animation(0.3f, (Assets.getInstance().get("PlayerFish/simplefishbite.atlas", TextureAtlas.class).findRegions("simple_fish_bite")));
+		biteRight = new Animation(0.07f, (Assets.getInstance().get("PlayerFish/simplefishbite.atlas", TextureAtlas.class).findRegions("simple_fish_bite")));
 		biteFlipped = new ArrayFlip(Assets.getInstance().get("PlayerFish/simplefishbite.atlas", TextureAtlas.class).findRegions("simple_fish_bite"));
-		biteLeft = new Animation(0.3f, biteFlipped.getFlipped());
+		biteLeft = new Animation(0.07f, biteFlipped.getFlipped());
 		
 		//turning animation
 		turnRight = new Animation(0.07f, (Assets.getInstance().get("PlayerFish/simplefishflip.atlas", TextureAtlas.class).findRegions("simple_fish_flip")));
@@ -43,17 +45,18 @@ public class AnimateSimpleFish extends AbsFishAnimationBehavior{
 	public void Animate(Batch batch, float x, float y, float width, float height, float stateTime) {
 		differenceTime = stateTime - differenceTime;
 		loopTime+=differenceTime;
-		
 		if(biting){
-			if(currentDirection == Direction.RIGHT){
+			if(currentDirection == Direction.LEFT){
 				batch.draw(biteRight.getKeyFrame(loopTime, false), x, y, width, height);
 				if(biteRight.isAnimationFinished(loopTime)){
 					biting = false;
+					entity.setCurrentState(new NormalFishState(entity));
 				}
 			}
 			else{
 				batch.draw(biteLeft.getKeyFrame(loopTime, false), x, y, width, height);
 				if(biteLeft.isAnimationFinished(loopTime)){
+					entity.setCurrentState(new NormalFishState(entity));
 					biting = false;
 				}
 			}
@@ -80,7 +83,6 @@ public class AnimateSimpleFish extends AbsFishAnimationBehavior{
 				batch.draw(left.getKeyFrame(stateTime), x, y, width, height);
 			}	
 		}
-		
 		differenceTime = stateTime;
 	}
 
@@ -88,10 +90,13 @@ public class AnimateSimpleFish extends AbsFishAnimationBehavior{
 		loopTime = 0;
 	}
 
+
 	@Override
 	public void turn(int directionHorizontal) {
-		turning = true;
-		resetLoop();
+		if(!biting){
+			turning = true;
+			resetLoop();
+		}
 		currentDirection = directionHorizontal;
 	}
 	

@@ -20,7 +20,7 @@ public class SimpleFish extends PlayerFish{
 		// sets the position to a random place in gameview
 		setPosition(MathUtils.random(gameView.getWidth()-this.getWidth()),MathUtils.random(gameView.getHeight()-this.getHeight()));
 		//starting animation for simplefish
-		setAnimationBehavior(new AnimateSimpleFish(getDirectionHorizontal()));
+		setAnimationBehavior(new AnimateSimpleFish(this, getDirectionHorizontal()));
 	}
 
 	@Override

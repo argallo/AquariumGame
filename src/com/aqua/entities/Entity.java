@@ -120,8 +120,8 @@ public abstract class Entity extends AnimatedActor{
 	 */
 	public boolean collidesWith(Entity collider){
 		if(this.getX() < collider.getX()+collider.getWidth() && this.getX()+this.getWidth()> collider.getX()){
-			System.out.println("entity X: "+this.getX()+" entity Y: "+this.getY()+" entity width: "+this.getWidth() +" entity height: "+ this.getHeight()
-					+" collider X: "+ collider.getX()+" collider Y: "+ collider.getY()+ " collider width: "+collider.getWidth() +" collider height: "+ collider.getHeight());
+			//System.out.println("entity X: "+this.getX()+" entity Y: "+this.getY()+" entity width: "+this.getWidth() +" entity height: "+ this.getHeight()
+			//		+" collider X: "+ collider.getX()+" collider Y: "+ collider.getY()+ " collider width: "+collider.getWidth() +" collider height: "+ collider.getHeight());
 			if(this.getY() < collider.getY()+collider.getHeight() && this.getY()+this.getHeight() > collider.getY()){
 				return true;
 			}

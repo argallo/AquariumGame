@@ -49,8 +49,6 @@ public class HungryFishState extends AbsFishState{
 		closestFood = entity.findClosestEntity(foodList);
 		if(entity.collidesWith(closestFood)){
 			closestFood.removeThis();
-			entity.setCurrentState(new NormalFishState(entity));
-			entity.setAnimationBehavior(new AnimateSimpleFish(entity.getDirectionHorizontal()));
 			entity.eat();
 		}
 		else{
@@ -79,10 +77,10 @@ public class HungryFishState extends AbsFishState{
 	private void updateHunger() {
 		hunger++;
 		if(hunger == 300){
-			entity.setAnimationBehavior(new AnimateSickSimpleFish(entity.getDirectionHorizontal()));
+			entity.setAnimationBehavior(new AnimateSickSimpleFish(entity, entity.getDirectionHorizontal()));
 		}
 		if(hunger == 600){
-			entity.setAnimationBehavior(new AnimateDeadSimpleFish(entity.getDirectionHorizontal()));
+			entity.setAnimationBehavior(new AnimateDeadSimpleFish(entity, entity.getDirectionHorizontal()));
 			entity.setCurrentState(new DeadFishState(entity));
 		}
 		
