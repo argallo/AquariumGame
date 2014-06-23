@@ -156,8 +156,18 @@ public abstract class Entity extends AnimatedActor{
 	 */
 	//maybe make a overloaded that takes in x and y positions
 	private double distanceFormula(Entity entity){
-		return Math.sqrt((this.getCenterX()-entity.getCenterX())*(this.getCenterX()-entity.getCenterX()) 
-				+ (this.getCenterY()-entity.getCenterY())*(this.getCenterY()-entity.getCenterY()));
+		return distanceFormula(entity.getCenterX(), entity.getCenterY());
+	}
+	
+	/**
+	 * 
+	 * @param centerX the entity x to check distance with
+	 * @param centerY the entity y to check distance with
+	 * @return the distance away from the xy center point of the entity
+	 */
+	public double distanceFormula(float centerX, float centerY){
+		return Math.sqrt((this.getCenterX()-centerX)*(this.getCenterX()-centerX) 
+				+ (this.getCenterY()-centerY)*(this.getCenterY()-centerY));
 	}
 	
 	/**

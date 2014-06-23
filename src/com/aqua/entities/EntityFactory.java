@@ -2,6 +2,7 @@ package com.aqua.entities;
 
 import com.aqua.GameManager;
 import com.aqua.entities.bait.StarterBait;
+import com.aqua.entities.money.GoldCoin;
 import com.aqua.entities.money.SilverCoin;
 import com.aqua.entities.simplefish.SimpleFish;
 import com.aqua.gamecomponents.GameView;
@@ -47,6 +48,9 @@ public class EntityFactory {
 		}
 		else if(entityName.equals("silvercoin")){
 			return new SilverCoin(g, gameManager.newEntityId(), x, y);
+		}
+		else if(entityName.equals("goldcoin")){
+			return new GoldCoin(g, gameManager.newEntityId(), x, y);
 		}
 		else{
 			return null;

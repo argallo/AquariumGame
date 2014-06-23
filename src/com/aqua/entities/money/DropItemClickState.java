@@ -3,48 +3,43 @@ package com.aqua.entities.money;
 import com.aqua.entities.Entity;
 import com.aqua.entities.states.State;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 
 public class DropItemClickState extends State {
 
-	private static final float DEFAULTX = Gdx.graphics.getWidth();
-	private static final float DEFAULTY = Gdx.graphics.getHeight()-5;
-	private static final float SPEED = 1000;
+	private static final float DEFAULTX = Gdx.graphics.getWidth() - Gdx.graphics.getWidth()/8;
+	private static final float DEFAULTY = Gdx.graphics.getHeight() - Gdx.graphics.getWidth()/15;
+	private static final float SPEED = 1.3f;
 	Entity entity;
-	float xDiff, yDiff;
+	float length;
+	Vector2 vec;
 	
 	public DropItemClickState(Entity entity) {
 		setEntity(entity);
+		vec = new Vector2();
 	}
-	
+
 	@Override
 	protected void setEntity(Entity entity) {
 		this.entity = entity;
-
+		
 	}
 
 	@Override
 	public void movement(float delta) {
-		if(entity.getX()< DEFAULTX){
-			xDiff = DEFAULTX-entity.getX();
-		}
-		if(entity.getY() < DEFAULTY){
-			yDiff = DEFAULTY-entity.getY();
-		}
-		calculateMove(delta);
+		vec.set(DEFAULTX - entity.getCenterX(), DEFAULTY - entity.getCenterY());
+		length = vec.len();
+		vec.nor();
+		((AbsDropItems) entity).setOffset(((AbsDropItems) entity).getOffset()+0.2f);
+		entity.setX(entity.getX()+vec.x*(SPEED+(length*delta*5)));
+		entity.setY(entity.getY()+vec.y*(SPEED+(length*delta*5)));
+		checkRemove();
 	}
 
-	private void calculateMove(float delta) {
-		if(xDiff/yDiff > 1){
-			entity.setX(entity.getX()+((xDiff/yDiff)*SPEED*delta));
-			entity.setY(entity.getY()+1*SPEED*delta);
-		}
-		else if(yDiff/xDiff > 1){
-				entity.setY(entity.getY()+((yDiff/xDiff)*SPEED*delta));
-				entity.setX(entity.getX()+1*SPEED*delta);
-		}
-		else{
-			entity.setY(entity.getY()+1*SPEED*delta);
-			entity.setX(entity.getX()+1*SPEED*delta);
+	private void checkRemove() {
+		if(length < 1){
+			entity.remove();
 		}
 		
 	}

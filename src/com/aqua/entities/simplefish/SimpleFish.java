@@ -15,6 +15,7 @@ public class SimpleFish extends PlayerFish{
 	private static final int SMALL = 0;
 	private static final int LARGE = 1;
 	private int fishSize = 0;
+	private int grow = 0;
 	private int coinDrop = 0;
 
 	public SimpleFish(GameView gameView, int entityId) {
@@ -42,6 +43,11 @@ public class SimpleFish extends PlayerFish{
 	}
 
 	private void dropCoin() {
+		if(grow == 5){
+			fishSize++;
+			setSize(getWidth()*1.5f, getHeight()*1.5f);
+		}
+		grow++;
 		switch(fishSize){
 		case SMALL:
 			this.gameView.addEntity("silvercoin", this.getCenterX(), this.getY());
