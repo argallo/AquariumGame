@@ -8,8 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class DropItemClickState extends State {
 
-	private static final float DEFAULTX = Gdx.graphics.getWidth() - Gdx.graphics.getWidth()/8;
-	private static final float DEFAULTY = Gdx.graphics.getHeight() - Gdx.graphics.getWidth()/15;
+	private static final float DEFAULTX = Gdx.graphics.getWidth() - Gdx.graphics.getWidth()/4+Gdx.graphics.getWidth()/80;
+	private static final float DEFAULTY = Gdx.graphics.getHeight() - Gdx.graphics.getHeight()/12;
 	private static final float SPEED = 1.3f;
 	Entity entity;
 	float length;

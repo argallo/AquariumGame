@@ -25,6 +25,7 @@ public class Assets extends AssetManager{
 		param.magFilter = TextureFilter.Linear;
 		load("Background/background.png", Texture.class, param);
 		load("Container/container.png", Texture.class, param);
+		load("Container/window.png", Texture.class, param);
 		load("UIItems/simplefish_item.png", Texture.class, param);
 		load("Bait/fishfood_green.png", Texture.class, param);
 		load("Bait/fishfood_red.png", Texture.class, param);

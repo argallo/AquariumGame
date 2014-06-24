@@ -1,8 +1,12 @@
 package com.aqua.containeritems;
 
+import com.aqua.Assets;
 import com.aqua.GameManager;
 import com.aqua.gamecomponents.GameView;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -14,11 +18,13 @@ public abstract class AbsButtonItem extends Button implements UiItem{
 	private ButtonStyle buttonStyle;
 	protected GameManager gameManager = GameManager.getInstance();
 	protected GameView gameView;
+	private TextureRegion glass;
 	
 	public AbsButtonItem() {
 		buttonStyle = new ButtonStyle();
 		setSize(Gdx.graphics.getWidth()/12, Gdx.graphics.getWidth()/14);
 		initListener();
+		glass = new TextureRegion(Assets.getInstance().get("Container/window.png", Texture.class));
 	}
 	
 	/**
@@ -50,6 +56,13 @@ public abstract class AbsButtonItem extends Button implements UiItem{
 	 */
 	public void setGameView(GameView gameView) {
 		this.gameView = gameView;
+	}
+	
+	//draws glass over UIITEM
+	@Override
+	public void draw(Batch batch, float parentAlpha) {
+		super.draw(batch, parentAlpha);
+		batch.draw(glass, getX()+Gdx.graphics.getWidth()/70, getY()-getY()/8, getWidth()-getWidth()/3, getHeight()-getHeight()/20);
 	}
 
 }
