@@ -20,7 +20,7 @@ public class NormalFishState extends AbsFishState{
 	//swap entity to constructor
 	@Override
 	public void movement(float delta) {
-		if(!(entity.isTurning() ||entity.isEating())){
+		if(!(entity.isTurning())){
 			updateHunger();
 			if(MathUtils.random(100)>randomOdds){
 				generateRandomMovement();

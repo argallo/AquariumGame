@@ -28,7 +28,7 @@ public class BuySimpleFishItem extends AbsButtonItem {
 	public void execute() {
 		if(gameManager.getCurrentScore() >= AMOUNT){
 			gameView.addEntity("simplefish");
-			gameManager.setCurrentScore(gameManager.getCurrentScore()-AMOUNT);
+			updateScore(-AMOUNT);
 		}
 	}
 	

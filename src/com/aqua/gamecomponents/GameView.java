@@ -26,9 +26,10 @@ public class GameView extends Group{
 		this.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
+				//fix subtracting money
 				if(GameManager.getInstance().getCurrentScore() > 100)
 					addEntity("starterbait", x, y);
-				//subtract from current score
+				    
 			}
 		});
 	}

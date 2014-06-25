@@ -29,7 +29,7 @@ public abstract class AbsDropItems extends Entity{
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				setCurrentState(new DropItemClickState((Entity) event.getTarget()));
-				GameManager.getInstance().setCurrentScore(GameManager.getInstance().getCurrentScore()+VALUE);
+				updateScore(VALUE);
 				cancelParent();
 			}
 		});

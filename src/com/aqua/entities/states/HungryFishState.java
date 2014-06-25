@@ -47,6 +47,7 @@ public class HungryFishState extends AbsFishState{
 		if(entity.collidesWith(closestFood)){
 			closestFood.removeThis();
 			entity.eat();
+			entity.setCurrentState(new NormalFishState(entity));
 		}
 		else{
 			if(!entity.isTurning()){

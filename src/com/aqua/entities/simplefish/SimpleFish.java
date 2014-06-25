@@ -36,7 +36,7 @@ public class SimpleFish extends PlayerFish{
 
 	private void updateCoin() {
 		coinDrop++;
-		if(coinDrop > DROPRATE){
+		if(coinDrop > DROPRATE && getCurrentState().getClass().equals(NormalFishState.class)){
 			dropCoin();	
 			coinDrop = 0;
 		}

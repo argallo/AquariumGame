@@ -65,4 +65,18 @@ public abstract class AbsButtonItem extends Button implements UiItem{
 		batch.draw(glass, getX()+Gdx.graphics.getWidth()/70, getY()-getY()/8, getWidth()-getWidth()/3, getHeight()-getHeight()/20);
 	}
 
+	/**
+	 * updates the score not working for now
+	 * @param amount amount to update score by
+	 */
+	public void updateScore(int amount){
+		GameManager.getInstance().setCurrentScore(amount);
+		/*if(amount > 0){
+			this.getParent().getParent().addActor(new MoneyTextFloat(amount, true));
+		}
+		else{
+			this.getParent().getParent().addActor(new MoneyTextFloat(amount, false));
+		}
+		*/
+	}
 }

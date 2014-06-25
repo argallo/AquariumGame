@@ -34,7 +34,7 @@ public abstract class AbsFishAnimationBehavior implements AnimationBehavior{
 			if(currentDirection == Direction.LEFT){
 				batch.draw(biteRight.getKeyFrame(loopTime, false), x, y, width, height);
 				if(biteRight.isAnimationFinished(loopTime)){
-					entity.setCurrentState(new NormalFishState(entity));
+					//entity.setCurrentState(new NormalFishState(entity));
 					entity.setAnimationBehavior(new AnimateSimpleFish(entity, currentDirection));
 					biting = false;
 				}
@@ -42,7 +42,7 @@ public abstract class AbsFishAnimationBehavior implements AnimationBehavior{
 			else{
 				batch.draw(biteLeft.getKeyFrame(loopTime, false), x, y, width, height);
 				if(biteLeft.isAnimationFinished(loopTime)){
-					entity.setCurrentState(new NormalFishState(entity));
+					//entity.setCurrentState(new NormalFishState(entity));
 					entity.setAnimationBehavior(new AnimateSimpleFish(entity, currentDirection));
 					biting = false;
 				}

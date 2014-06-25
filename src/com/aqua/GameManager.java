@@ -3,6 +3,7 @@ package com.aqua;
 import com.aqua.levels.Level1;
 import com.aqua.levels.LevelCreator;
 
+//game flips 90 degrees
 public class GameManager {
 	
 	
@@ -27,7 +28,7 @@ public class GameManager {
 	}
 	
 	public void setCurrentScore(int currentScore) {
-		this.currentScore = currentScore;
+		this.currentScore += currentScore;
 	}
  
 	//may need to synchronize probably not

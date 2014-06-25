@@ -3,7 +3,9 @@ package com.aqua.entities;
 import java.util.List;
 
 import com.aqua.Direction;
+import com.aqua.GameManager;
 import com.aqua.animations.AnimatedActor;
+import com.aqua.containeritems.MoneyTextFloat;
 import com.aqua.entities.states.DefaultState;
 import com.aqua.entities.states.NormalFishState;
 import com.aqua.entities.states.State;
@@ -213,6 +215,21 @@ public abstract class Entity extends AnimatedActor{
 			setY(gameView.getHeight()-getHeight());
 			setDirectionVerticle(Direction.DOWN);
 		}
+	}
+	
+	/**
+	 * updates the score based on amount  not working for now
+	 * @param amount the amount of change score by
+	 */
+	public void updateScore(int amount){
+		GameManager.getInstance().setCurrentScore(amount);
+		/*if(amount > 0){
+			this.getParent().getParent().addActor(new MoneyTextFloat(amount, true));
+		}
+		else{
+			this.getParent().getParent().addActor(new MoneyTextFloat(amount, false));
+		}
+		*/
 	}
 
 }
