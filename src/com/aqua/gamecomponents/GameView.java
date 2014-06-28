@@ -96,9 +96,9 @@ public class GameView extends Group{
 	 */
 	public List<Entity> getFoodList(List<String> foodNames){
 		if(foodNames != null){
-			List<Entity> foods = entityList.get(foodNames.remove(0));
-			for(int i = 0; i < foodNames.size(); i++){
-				foods.addAll(getFoodList(foodNames.remove(0)));
+			List<Entity> foods = entityList.get(foodNames.get(0));
+			for(int i = 1; i < foodNames.size(); i++){
+				foods.addAll(getFoodList(foodNames.get(i)));
 			}
 			return foods;
 		}

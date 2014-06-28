@@ -3,6 +3,7 @@ package com.aqua.animations;
 import com.aqua.Assets;
 import com.aqua.Direction;
 import com.aqua.entities.Entity;
+import com.aqua.entities.PlayerFish;
 import com.aqua.entities.states.NormalFishState;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -16,21 +17,26 @@ public class AnimateSimpleFish extends AbsFishAnimationBehavior{
 	 * @param entity entity attached to this animation instance
 	 * @param currentDirection current direction of the entity and animation
 	 */
+	private TextureAtlas fishAtlas;
+	
 	public AnimateSimpleFish(Entity entity, int currentDirection) {
-		super(entity, currentDirection);
+		super(entity, currentDirection);	
+
+		fishAtlas = ((PlayerFish) entity).getFishAtlas();
+		
 		//biting animation
-		biteRight = new Animation(0.07f, (Assets.getInstance().get("PlayerFish/simplefishbite.atlas", TextureAtlas.class).findRegions("simple_fish_bite")));
-		biteFlipped = new ArrayFlip(Assets.getInstance().get("PlayerFish/simplefishbite.atlas", TextureAtlas.class).findRegions("simple_fish_bite"));
+		biteRight = new Animation(0.07f, fishAtlas.findRegions(entity.getEntityName()+"_bite"));
+		biteFlipped = new ArrayFlip(fishAtlas.findRegions(entity.getEntityName()+"_bite"));
 		biteLeft = new Animation(0.07f, biteFlipped.getFlipped());
 		
 		//turning animation
-		turnRight = new Animation(0.07f, (Assets.getInstance().get("PlayerFish/simplefishflip.atlas", TextureAtlas.class).findRegions("simple_fish_flip")));
-		turnFlipped = new ArrayFlip(Assets.getInstance().get("PlayerFish/simplefishflip.atlas", TextureAtlas.class).findRegions("simple_fish_flip"));
+		turnRight = new Animation(0.07f,fishAtlas.findRegions(entity.getEntityName()+"_flip"));
+		turnFlipped = new ArrayFlip(fishAtlas.findRegions(entity.getEntityName()+"_flip"));
 		turnLeft = new Animation(0.07f, turnFlipped.getFlipped());
 		
 		//moving animation
-		left = new Animation(0.03f, (Assets.getInstance().get("PlayerFish/simplefish.atlas", TextureAtlas.class).findRegions("simplefish")));
-		flipped = new ArrayFlip(Assets.getInstance().get("PlayerFish/simplefish.atlas", TextureAtlas.class).findRegions("simplefish"));
+		left = new Animation(0.03f, fishAtlas.findRegions(entity.getEntityName()));
+		flipped = new ArrayFlip(fishAtlas.findRegions(entity.getEntityName()));
 		right = new Animation(0.03f, flipped.getFlipped());
 		left.setPlayMode(Animation.LOOP);
 		right.setPlayMode(Animation.LOOP);

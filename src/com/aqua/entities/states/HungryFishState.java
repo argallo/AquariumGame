@@ -39,7 +39,7 @@ public class HungryFishState extends AbsFishState{
 	}
 
 	private boolean checkFood(float delta) {
-		foodList = entity.getGameView().getFoodList("starterbait");
+		foodList = entity.getGameView().getFoodList(entity.getEntityFoodList());
 		if(foodList == null || foodList.isEmpty()){
 			return false;
 		}

@@ -1,5 +1,6 @@
 package com.aqua.entities;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.aqua.Direction;
@@ -29,6 +30,7 @@ public abstract class Entity extends AnimatedActor{
 	private int entityId;
 	protected GameView gameView;
 	private State currentState;
+	private LinkedList<String> entityFoodList;
 	
 	
 	/**
@@ -42,7 +44,7 @@ public abstract class Entity extends AnimatedActor{
 		this.entityId = entityId;
 		setEntityName(createName());
 		setCurrentState(initState());
-		
+		entityFoodList = new LinkedList<String>();
 	}
 	
 	
@@ -230,6 +232,30 @@ public abstract class Entity extends AnimatedActor{
 			this.getParent().getParent().addActor(new MoneyTextFloat(amount, false));
 		}
 		*/
+	}
+	
+	/**
+	 * 
+	 * @return the entity food list 
+	 */
+	public LinkedList<String> getEntityFoodList() {
+		return entityFoodList;
+	}
+	
+	/**
+	 * 
+	 * @param foodList the list of food the entity can eat
+	 */
+	public void setEntityFoodList(LinkedList<String> foodList) {
+		this.entityFoodList = foodList;
+	}
+	
+	/**
+	 * 
+	 * @param food a single food to be added to the list
+	 */
+	public void setEntityFood(String food){
+		this.entityFoodList.add(food);
 	}
 
 }

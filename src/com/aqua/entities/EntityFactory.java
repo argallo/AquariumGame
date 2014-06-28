@@ -4,6 +4,7 @@ import com.aqua.GameManager;
 import com.aqua.entities.bait.StarterBait;
 import com.aqua.entities.money.GoldCoin;
 import com.aqua.entities.money.SilverCoin;
+import com.aqua.entities.purplefish.PurpleFish;
 import com.aqua.entities.simplefish.SimpleFish;
 import com.aqua.gamecomponents.GameView;
 
@@ -27,8 +28,11 @@ public class EntityFactory {
 	 * @return a new entity with a unique id 
 	 */
 	public Entity createEntity(String entityName, GameView g){
-		if(entityName.equals("simplefish")){
+		if(entityName.equals("simple_fish")){
 			return new SimpleFish(g, gameManager.newEntityId());
+		}
+		else if(entityName.equals("purple_fish")){
+			return new PurpleFish(g, gameManager.newEntityId());
 		}
 		else {
 			return null;

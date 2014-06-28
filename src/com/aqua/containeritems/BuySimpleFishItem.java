@@ -27,7 +27,7 @@ public class BuySimpleFishItem extends AbsButtonItem {
 	@Override
 	public void execute() {
 		if(gameManager.getCurrentScore() >= AMOUNT){
-			gameView.addEntity("simplefish");
+			gameView.addEntity("simple_fish");
 			updateScore(-AMOUNT);
 		}
 	}

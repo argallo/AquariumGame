@@ -33,12 +33,8 @@ public class Assets extends AssetManager{
 		load("Bait/fishfood_yellow.png", Texture.class, param);
 		load("Money/silver_coin_1.png", Texture.class, param);
 		load("Money/gold_coin_1.png", Texture.class, param);
-		load("PlayerFish/simplefish.atlas", TextureAtlas.class);
-		load("PlayerFish/simplefishflip.atlas", TextureAtlas.class);
-		load("PlayerFish/simplefishsick.atlas", TextureAtlas.class);
-		load("PlayerFish/simplefishbite.atlas", TextureAtlas.class);
-		load("PlayerFish/simplefishsickbite.atlas", TextureAtlas.class);
-		load("PlayerFish/simplefishsickflip.atlas", TextureAtlas.class);
+		load("PlayerFish/SimpleFish/simplefish.atlas", TextureAtlas.class);
+		load("PlayerFish/PurpleFish/purplefish.atlas", TextureAtlas.class);
 		finishLoading();
 	}
 

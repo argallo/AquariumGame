@@ -22,7 +22,7 @@ public abstract class AbsButtonItem extends Button implements UiItem{
 	
 	public AbsButtonItem() {
 		buttonStyle = new ButtonStyle();
-		setSize(Gdx.graphics.getWidth()/12, Gdx.graphics.getWidth()/14);
+		setSize(Gdx.graphics.getWidth()/14, Gdx.graphics.getWidth()/18);
 		initListener();
 		glass = new TextureRegion(Assets.getInstance().get("Container/window.png", Texture.class));
 	}
@@ -62,7 +62,7 @@ public abstract class AbsButtonItem extends Button implements UiItem{
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
-		batch.draw(glass, getX()+Gdx.graphics.getWidth()/70, getY()-getY()/8, getWidth()-getWidth()/3, getHeight()-getHeight()/20);
+		batch.draw(glass, getX()+Gdx.graphics.getWidth()/70, getY()-getY()/8, getWidth()-getWidth()/5, getHeight()+Gdx.graphics.getWidth()/90);
 	}
 
 	/**

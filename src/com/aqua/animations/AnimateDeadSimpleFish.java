@@ -3,6 +3,7 @@ package com.aqua.animations;
 import com.aqua.Assets;
 import com.aqua.Direction;
 import com.aqua.entities.Entity;
+import com.aqua.entities.PlayerFish;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -10,10 +11,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 public class AnimateDeadSimpleFish extends AbsFishAnimationBehavior{
 	
 	
+	private TextureAtlas fishDeadAtlas;
+	
 	public AnimateDeadSimpleFish(Entity entity ,int currentDirection) {
 		super(entity, currentDirection);
-		left = new Animation(0.02f, (Assets.getInstance().get("PlayerFish/simplefishsick.atlas", TextureAtlas.class).findRegions("simple_fish_dead")));
-		flipped = new ArrayFlip(Assets.getInstance().get("PlayerFish/simplefishsick.atlas", TextureAtlas.class).findRegions("simple_fish_dead"));
+		fishDeadAtlas = ((PlayerFish) entity).getFishAtlas();
+	
+		left = new Animation(0.02f, fishDeadAtlas.findRegions(entity.getEntityName()+"_dead"));
+		flipped = new ArrayFlip(fishDeadAtlas.findRegions(entity.getEntityName()+"_dead"));
 		right = new Animation(0.02f, flipped.getFlipped());
 		left.setPlayMode(Animation.LOOP);
 		right.setPlayMode(Animation.LOOP);
