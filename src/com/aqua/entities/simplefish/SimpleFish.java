@@ -53,6 +53,8 @@ public class SimpleFish extends PlayerFish{
 		if(grow == 5){
 			fishSize++;
 			setSize(getWidth()*1.5f, getHeight()*1.5f);
+			this.gameView.entitySwap(this.getEntityName(), this.getEntityName()+"_big", this);
+			this.setOnlyEntityName(this.getEntityName()+"_big");
 		}
 		grow++;
 		switch(fishSize){
@@ -73,7 +75,7 @@ public class SimpleFish extends PlayerFish{
 
 	@Override
 	protected State initState() {
-		return new HungryFishState(this);
+		return new NormalFishState(this);
 	}
 	
 	public void setFishSize(int fishSize) {

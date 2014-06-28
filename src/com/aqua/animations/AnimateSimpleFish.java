@@ -25,18 +25,18 @@ public class AnimateSimpleFish extends AbsFishAnimationBehavior{
 		fishAtlas = ((PlayerFish) entity).getFishAtlas();
 		
 		//biting animation
-		biteRight = new Animation(0.07f, fishAtlas.findRegions(entity.getEntityName()+"_bite"));
-		biteFlipped = new ArrayFlip(fishAtlas.findRegions(entity.getEntityName()+"_bite"));
+		biteRight = new Animation(0.07f, fishAtlas.findRegions(entity.getName()+"_bite"));
+		biteFlipped = new ArrayFlip(fishAtlas.findRegions(entity.getName()+"_bite"));
 		biteLeft = new Animation(0.07f, biteFlipped.getFlipped());
 		
 		//turning animation
-		turnRight = new Animation(0.07f,fishAtlas.findRegions(entity.getEntityName()+"_flip"));
-		turnFlipped = new ArrayFlip(fishAtlas.findRegions(entity.getEntityName()+"_flip"));
+		turnRight = new Animation(0.07f,fishAtlas.findRegions(entity.getName()+"_flip"));
+		turnFlipped = new ArrayFlip(fishAtlas.findRegions(entity.getName()+"_flip"));
 		turnLeft = new Animation(0.07f, turnFlipped.getFlipped());
 		
 		//moving animation
-		left = new Animation(0.03f, fishAtlas.findRegions(entity.getEntityName()));
-		flipped = new ArrayFlip(fishAtlas.findRegions(entity.getEntityName()));
+		left = new Animation(0.03f, fishAtlas.findRegions(entity.getName()));
+		flipped = new ArrayFlip(fishAtlas.findRegions(entity.getName()));
 		right = new Animation(0.03f, flipped.getFlipped());
 		left.setPlayMode(Animation.LOOP);
 		right.setPlayMode(Animation.LOOP);

@@ -22,17 +22,17 @@ public class AnimateSickSimpleFish extends AbsFishAnimationBehavior {
 		super(entity, currentDirection);
 		fishSickAtlas = ((PlayerFish) entity).getFishAtlas();
 
-		biteRight = new Animation(0.07f, fishSickAtlas.findRegions(entity.getEntityName()+"_sick_bite"));
-		biteFlipped = new ArrayFlip(fishSickAtlas.findRegions(entity.getEntityName()+"_sick_bite"));
+		biteRight = new Animation(0.07f, fishSickAtlas.findRegions(entity.getName()+"_sick_bite"));
+		biteFlipped = new ArrayFlip(fishSickAtlas.findRegions(entity.getName()+"_sick_bite"));
 		biteLeft = new Animation(0.07f, biteFlipped.getFlipped());
 		
 		//turning animation
-		turnRight = new Animation(0.07f, fishSickAtlas.findRegions(entity.getEntityName()+"_sick_flip"));
-		turnFlipped = new ArrayFlip(fishSickAtlas.findRegions(entity.getEntityName()+"_sick_flip"));
+		turnRight = new Animation(0.07f, fishSickAtlas.findRegions(entity.getName()+"_sick_flip"));
+		turnFlipped = new ArrayFlip(fishSickAtlas.findRegions(entity.getName()+"_sick_flip"));
 		turnLeft = new Animation(0.07f, turnFlipped.getFlipped());
 		
-		left = new Animation(0.02f, fishSickAtlas.findRegions(entity.getEntityName()+"_sick"));
-		flipped = new ArrayFlip(fishSickAtlas.findRegions(entity.getEntityName()+"_sick"));
+		left = new Animation(0.02f, fishSickAtlas.findRegions(entity.getName()+"_sick"));
+		flipped = new ArrayFlip(fishSickAtlas.findRegions(entity.getName()+"_sick"));
 		right = new Animation(0.02f, flipped.getFlipped());
 		left.setPlayMode(Animation.LOOP);
 		right.setPlayMode(Animation.LOOP);

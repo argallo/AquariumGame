@@ -105,5 +105,27 @@ public class GameView extends Group{
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param currentEntityName original name of entity before swap
+	 * @param newEntityName 
+	 * @param entity
+	 */
+	public void entitySwap(String currentEntityName, String newEntityName, Entity entity){
+		Iterator<Entity> list = entityList.get(currentEntityName).iterator();
+		Entity ent;
+		while (list.hasNext()) {
+			   ent = list.next();
+			   if(ent.getEntityId() == entity.getEntityId()){
+				   list.remove();
+					if(entityList.get(newEntityName) == null){
+						entityList.put(newEntityName, new LinkedList<Entity>());	
+					}
+					entityList.get(newEntityName).add(entity);
+					break;
+			   }
+		}
+	}
+	
 
 }

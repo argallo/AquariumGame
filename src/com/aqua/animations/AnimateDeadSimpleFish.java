@@ -17,8 +17,8 @@ public class AnimateDeadSimpleFish extends AbsFishAnimationBehavior{
 		super(entity, currentDirection);
 		fishDeadAtlas = ((PlayerFish) entity).getFishAtlas();
 	
-		left = new Animation(0.02f, fishDeadAtlas.findRegions(entity.getEntityName()+"_dead"));
-		flipped = new ArrayFlip(fishDeadAtlas.findRegions(entity.getEntityName()+"_dead"));
+		left = new Animation(0.02f, fishDeadAtlas.findRegions(entity.getName()+"_dead"));
+		flipped = new ArrayFlip(fishDeadAtlas.findRegions(entity.getName()+"_dead"));
 		right = new Animation(0.02f, flipped.getFlipped());
 		left.setPlayMode(Animation.LOOP);
 		right.setPlayMode(Animation.LOOP);

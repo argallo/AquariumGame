@@ -83,6 +83,15 @@ public abstract class Entity extends AnimatedActor{
 	 * @param entityName entity name to be set
 	 */
 	protected void setEntityName(String entityName) {
+		setOnlyEntityName(entityName);
+		this.setName(entityName);
+	}
+	
+	/**
+	 * 
+	 * @param entityName sets only the entity name and not actor name
+	 */
+	protected void setOnlyEntityName(String entityName) {
 		this.entityName = entityName;
 	}
 	
