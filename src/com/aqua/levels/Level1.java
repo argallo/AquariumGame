@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.aqua.containeritems.AbsButtonItem;
+import com.aqua.containeritems.BuyPurpleFishItem;
 import com.aqua.containeritems.BuySimpleFishItem;
 import com.aqua.entities.Entity;
 import com.aqua.entities.enemy.EnemyCreator;
@@ -31,12 +32,13 @@ public class Level1 extends LevelCreator{
 		ArrayList<AbsButtonItem> items = new ArrayList<AbsButtonItem>();
 		//added only one item rest will be filled with default
 		items.add(new BuySimpleFishItem());
+		items.add(new BuyPurpleFishItem());
 		//create uiContainer
 		topInterface = new UiContainer(items, gameView);
 		background = new Background();
 		//setup enemyCreator
-		List<Entity> possibleEnemies = new ArrayList<Entity>();
-		EnemyCreator enemyCreator = new EnemyCreator(gameView, possibleEnemies, 100);
+		List<String> possibleEnemies = new ArrayList<String>();
+		EnemyCreator enemyCreator = new EnemyCreator(gameView, possibleEnemies, 5000);
 		stage.addActor(background);
 		stage.addActor(gameView);
 		stage.addActor(topInterface);

@@ -62,7 +62,7 @@ public class UiContainer extends Group{
 		}
 		else if (givenSlots < MAX_SLOTS){
 			for(int x = 0; x < givenSlots; x++){
-				uiItems.add(newItems.remove(x));
+				uiItems.add(newItems.remove(0));
 			}
 			for(int x = givenSlots; x < MAX_SLOTS; x++){
 				uiItems.add(new BlankItem());

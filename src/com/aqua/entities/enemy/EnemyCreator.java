@@ -19,10 +19,10 @@ public class EnemyCreator extends Actor{
 	private int enemyRate;
 	private GameView gameView;
 	//might change to list of strings
-	private List<Entity> possibleEnemies;
+	private List<String> possibleEnemies;
 	private int counter = 0;
 	
-	public EnemyCreator(GameView gameView, List<Entity> possibleEnemies, int enemyRate) {
+	public EnemyCreator(GameView gameView, List<String> possibleEnemies, int enemyRate) {
 		this.gameView = gameView;
 		this.possibleEnemies = possibleEnemies;
 		this.enemyRate = enemyRate;
@@ -40,7 +40,13 @@ public class EnemyCreator extends Actor{
 
 
 	private void createEnemy() {
+		Alert();
 		
+	}
+
+
+	private void Alert() {
+	this.getParent().addActor(new Alert());
 		
 	}
 	

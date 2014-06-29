@@ -27,6 +27,7 @@ public class Assets extends AssetManager{
 		load("Container/container.png", Texture.class, param);
 		load("Container/window.png", Texture.class, param);
 		load("UIItems/simplefish_item.png", Texture.class, param);
+		load("UIItems/purplefish_item.png", Texture.class, param);
 		load("Bait/fishfood_green.png", Texture.class, param);
 		load("Bait/fishfood_red.png", Texture.class, param);
 		load("Bait/fishfood_blue.png", Texture.class, param);
@@ -36,6 +37,8 @@ public class Assets extends AssetManager{
 		load("Money/diamond_1.png", Texture.class, param);
 		load("PlayerFish/SimpleFish/simplefish.atlas", TextureAtlas.class);
 		load("PlayerFish/PurpleFish/purplefish.atlas", TextureAtlas.class);
+		load("Alert/red_overlay.png", Texture.class, param);
+		load("Alert/alertbox_text.png", Texture.class, param);
 		finishLoading();
 	}
 
