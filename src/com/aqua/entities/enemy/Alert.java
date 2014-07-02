@@ -24,7 +24,6 @@ public class Alert extends Actor {
 	
 	@Override
 	public void act(float delta) {
-		System.out.println(counter);
 		counter++;
 		if(counter > 50){
 			if(flashes == 1){

@@ -2,6 +2,7 @@ package com.aqua.entities;
 
 import com.aqua.GameManager;
 import com.aqua.entities.bait.StarterBait;
+import com.aqua.entities.enemy.shark.Shark;
 import com.aqua.entities.money.Diamond;
 import com.aqua.entities.money.GoldCoin;
 import com.aqua.entities.money.SilverCoin;
@@ -34,6 +35,9 @@ public class EntityFactory {
 		}
 		else if(entityName.equals("purple_fish")){
 			return new PurpleFish(g, gameManager.newEntityId());
+		}
+		else if(entityName.equals("shark")){
+			return new Shark(g, gameManager.newEntityId());
 		}
 		else {
 			return null;

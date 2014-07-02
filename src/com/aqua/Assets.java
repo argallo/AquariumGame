@@ -37,6 +37,7 @@ public class Assets extends AssetManager{
 		load("Money/diamond_1.png", Texture.class, param);
 		load("PlayerFish/SimpleFish/simplefish.atlas", TextureAtlas.class);
 		load("PlayerFish/PurpleFish/purplefish.atlas", TextureAtlas.class);
+		load("Enemy/Shark/shark.atlas", TextureAtlas.class);
 		load("Alert/red_overlay.png", Texture.class, param);
 		load("Alert/alertbox_text.png", Texture.class, param);
 		finishLoading();

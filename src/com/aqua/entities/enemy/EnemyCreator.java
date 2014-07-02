@@ -33,7 +33,7 @@ public class EnemyCreator extends Actor{
 	public void act(float delta) {
 		counter++;
 		if(counter > enemyRate){
-			counter = 0;
+			counter = -300;
 			createEnemy();
 		}
 	}
@@ -41,7 +41,7 @@ public class EnemyCreator extends Actor{
 
 	private void createEnemy() {
 		Alert();
-		
+		gameView.addEntity("shark");
 	}
 
 
