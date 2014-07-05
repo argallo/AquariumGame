@@ -54,9 +54,8 @@ public class SharkState extends State {
 			return false;
 		}
 		closestFood = entity.findClosestEntity(foodList);
-		if(entity.collidesWith(closestFood)){
+		if(entity.collidesWith(closestFood, entity.getCollisionRegion())){
 			closestFood.removeThis();
-			System.out.println(foodList);
 			entity.eat();
 		}
 		return true;

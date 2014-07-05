@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.aqua.Direction;
 import com.aqua.GameManager;
+import com.aqua.Region;
 import com.aqua.animations.AnimatedActor;
 import com.aqua.containeritems.MoneyTextFloat;
 import com.aqua.entities.states.DefaultState;
@@ -133,9 +134,23 @@ public abstract class Entity extends AnimatedActor{
 	 */
 	public boolean collidesWith(Entity collider){
 		if(this.getX() < collider.getX()+collider.getWidth() && this.getX()+this.getWidth()> collider.getX()){
-			//System.out.println("entity X: "+this.getX()+" entity Y: "+this.getY()+" entity width: "+this.getWidth() +" entity height: "+ this.getHeight()
-			//		+" collider X: "+ collider.getX()+" collider Y: "+ collider.getY()+ " collider width: "+collider.getWidth() +" collider height: "+ collider.getHeight());
 			if(this.getY() < collider.getY()+collider.getHeight() && this.getY()+this.getHeight() > collider.getY()){
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	/**
+	 * 
+	 * @param collider collider other entity to check collision with
+	 * @param region the specific region inside this entity where the detection should be checked
+	 * @return
+	 */
+	
+	public boolean collidesWith(Entity collider, Region region){
+		if(this.getX()+region.getX() < collider.getX()+collider.getWidth() && this.getX()+region.getX()+region.getWidth()> collider.getX()){
+			if(this.getY()+region.getY() < collider.getY()+collider.getHeight() && this.getY()+region.getY()+region.getHeight() > collider.getY()){
 				return true;
 			}
 		}

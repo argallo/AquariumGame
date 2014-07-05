@@ -2,6 +2,7 @@ package com.aqua.entities.enemy.shark;
 
 import com.aqua.Assets;
 import com.aqua.Direction;
+import com.aqua.Region;
 import com.aqua.animations.AbsFishAnimationBehavior;
 import com.aqua.animations.AnimateSimpleFish;
 import com.aqua.entities.EnemyEntity;
@@ -14,7 +15,7 @@ import com.badlogic.gdx.math.MathUtils;
 public class Shark extends EnemyEntity{
 	
 	
-	
+	private Region collisionRegion;
 	
 	//FIGURE OUT WHY IT WONT DELETE THE PURPLE FISH
 	
@@ -27,14 +28,16 @@ public class Shark extends EnemyEntity{
 		// sets the position to a random place in gameview
 		if(getDirectionHorizontal() == Direction.LEFT){
 			setPosition(Gdx.graphics.getWidth()+this.getWidth()+Gdx.graphics.getWidth()/30,MathUtils.random(gameView.getHeight()-this.getHeight()));
+			collisionRegion = new Region(0,0, getWidth()/3, getHeight());
 		}
 		else{
 			setPosition(-this.getWidth()-Gdx.graphics.getWidth()/30,MathUtils.random(gameView.getHeight()-this.getHeight()));
+			collisionRegion = new Region(getWidth()-getWidth()/3,0, getWidth()/3, getHeight());
 		}
 		//starting animation for simplefish
 		setAnimationBehavior(new AnimateShark(this, getDirectionHorizontal()));
+		setEntityFood("purple_fish");
 		setEntityFood("simple_fish");
-		//setEntityFood("purple_fish");
 		//setEntityFood("starterbait");
 		
 	}
@@ -53,7 +56,9 @@ public class Shark extends EnemyEntity{
 		((AnimateShark) getAnimationBehavior()).bite();
 	}
 	
-	
+	public Region getCollisionRegion() {
+		return collisionRegion;
+	}
 	
 	
 
