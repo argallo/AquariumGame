@@ -38,7 +38,7 @@ public class Level1 extends LevelCreator{
 		background = new Background();
 		//setup enemyCreator
 		List<String> possibleEnemies = new ArrayList<String>();
-		EnemyCreator enemyCreator = new EnemyCreator(gameView, possibleEnemies, 1000);
+		EnemyCreator enemyCreator = new EnemyCreator(gameView, possibleEnemies, 1500);
 		stage.addActor(background);
 		stage.addActor(gameView);
 		stage.addActor(topInterface);

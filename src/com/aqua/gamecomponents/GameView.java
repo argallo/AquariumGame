@@ -106,16 +106,22 @@ public class GameView extends Group {
 	 * @return Iterates through to add all food lists to a single list
 	 */
 	public List<Entity> getFoodList(List<String> foodNames) {
-
+	
 		if (foodNames != null) {
 			foods = null;
 			foods = new LinkedList<Entity>();
-			foods.addAll(entityList.get(foodNames.get(0)));
-			for (int i = 1; i < foodNames.size(); i++) {
-				foods.addAll(getFoodList(foodNames.get(i)));
+			if(entityList.get(foodNames.get(0)) != null){
+				foods.addAll(entityList.get(foodNames.get(0)));
 			}
+			for (int i = 1; i < foodNames.size(); i++) {
+				if(entityList.get(foodNames.get(i)) != null){
+					foods.addAll(getFoodList(foodNames.get(i)));
+				}
+			}
+			System.out.println("not null ");
 			return foods;
 		}
+		System.out.println("null ");
 		return null;
 	}
 
